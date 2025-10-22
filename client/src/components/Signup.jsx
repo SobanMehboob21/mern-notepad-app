@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const [isForm, setIsForm] = useState({
@@ -9,6 +10,7 @@ const Signup = () => {
   });
   const [isError, setIsError] = useState(false);
   const [isMessage, setIsMessage] = useState("");
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setIsForm({
@@ -28,6 +30,9 @@ const Signup = () => {
 
       setIsError(false);
       setIsMessage(data.message || "Signup successful!");
+      setTimeout(() => {
+        navigate("/Login");
+      }, 1000);
     } catch (error) {
       setIsError(true);
       setIsMessage(error.response?.data?.message || "Signup failed");

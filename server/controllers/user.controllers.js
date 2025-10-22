@@ -32,6 +32,7 @@ export const CreateTheUser = async (req, res) => {
       { expiresIn: "7d" }
     );
 
+  
     return res.status(201).json({
       message: "User created successfully",
       user: {
@@ -73,6 +74,13 @@ export const LoginTheUser = async (req, res) => {
       process.env.JWT_SECRET,
       { expiresIn: "7d" }
     );
+
+    res.cookie("token", token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict",
+      maxAge: 60 * 60, 
+    });
 
     return res.status(200).json({
       message: "User logged in successfully",

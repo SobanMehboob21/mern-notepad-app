@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [isForm, setIsForm] = useState({
@@ -8,6 +9,8 @@ const Login = () => {
   });
   const [isError, setIsError] = useState(false);
   const [isMessage, setIsMessage] = useState("");
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setIsForm({
@@ -27,6 +30,9 @@ const Login = () => {
 
       setIsError(false);
       setIsMessage(data.message || "Login successful!");
+      setTimeout(() => {
+        navigate("/BlogPage");
+      }, 1000);
     } catch (error) {
       setIsError(true);
       setIsMessage(error.response?.data?.message || "Login failed");

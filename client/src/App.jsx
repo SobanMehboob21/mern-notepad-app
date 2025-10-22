@@ -2,6 +2,8 @@ import { Link, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
+import { BlogPage } from "./pages/BlogPage";
+import { Blog } from "./components/Blog";
 
 function App() {
   return (
@@ -12,6 +14,8 @@ function App() {
       <Routes>
         <Route path="/Signup" element={<Signup />} />
         <Route path="/Login" element={<Login />} />
+         <Route path="/BlogPage" element={<BlogPage />} />
+         <Route path="/Blog" element={<Blog />} />
       </Routes>
     </>
   );
